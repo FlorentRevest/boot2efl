@@ -24,19 +24,12 @@ fi
 if [ ! -d sources/meta-openembedded ] ; then
     git clone git://git.openembedded.org/meta-openembedded sources/meta-openembedded
 fi
-if [ ! -d sources/meta-smartphone ] ; then
-    git clone git://github.com/shr-distribution/meta-smartphone sources/meta-smartphone
-fi
 if [ ! -d sources/meta-boot2efl ] ; then
     git clone git://github.com/FlorentRevest/meta-boot2efl sources/meta-boot2efl
 fi
 if [ ! -d sources/meta-radxa-hybris ] ; then
     git clone git://github.com/FlorentRevest/meta-radxa-hybris sources/meta-radxa-hybris
 fi
-
-rm -rf sources/meta-smartphone/meta-android/recipes-android/image-utils/
-rm -rf sources/meta-smartphone/meta-android/recipes-android/brcm-patchram-plus/
-rm -rf sources/meta-smartphone/meta-android/recipes-android/rpc/android-rpc_git.bb
 
 # Create local.conf and bblayers.conf
 if [ ! -e $ROOTDIR/build/conf/local.conf ]; then
@@ -69,16 +62,12 @@ BBFILES ?= ""
 BBLAYERS ?= " \\
   $ROOTDIR/sources/poky/meta \\
   $ROOTDIR/sources/poky/meta-yocto \\
-  $ROOTDIR/sources/poky/meta-yocto-bsp \\
-  $ROOTDIR/sources/meta-smartphone/meta-android \\
   $ROOTDIR/sources/meta-boot2efl \\
   $ROOTDIR/sources/meta-radxa-hybris \\
   "
 BBLAYERS_NON_REMOVABLE ?= " \\
   $ROOTDIR/sources/poky/meta \\
   $ROOTDIR/sources/poky/meta-yocto \\
-  $ROOTDIR/sources/poky/meta-yocto-bsp \\
-  $ROOTDIR/sources/meta-smartphone/meta-android \\
   $ROOTDIR/sources/meta-boot2efl \\
   $ROOTDIR/sources/meta-radxa-hybris \\
   "
