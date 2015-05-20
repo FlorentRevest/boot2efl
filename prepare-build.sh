@@ -19,16 +19,16 @@ ROOTDIR=`pwd`
 # Fetch sources
 mkdir -p sources build/conf
 if [ ! -d sources/poky ] ; then
-    git clone git://git.yoctoproject.org/poky.git sources/poky
+    git clone -b fido http://git.yoctoproject.org/git/poky sources/poky
 fi
 if [ ! -d sources/meta-openembedded ] ; then
-    git clone git://git.openembedded.org/meta-openembedded sources/meta-openembedded
+    git clone -b fido https://github.com/openembedded/meta-openembedded.git sources/meta-openembedded
 fi
 if [ ! -d sources/meta-boot2efl ] ; then
-    git clone git://github.com/FlorentRevest/meta-boot2efl sources/meta-boot2efl
+    git clone https://github.com/FlorentRevest/meta-boot2efl sources/meta-boot2efl
 fi
 if [ ! -d sources/meta-radxa-hybris ] ; then
-    git clone git://github.com/FlorentRevest/meta-radxa-hybris sources/meta-radxa-hybris
+    git clone https://github.com/FlorentRevest/meta-radxa-hybris sources/meta-radxa-hybris
 fi
 
 # Create local.conf and bblayers.conf
