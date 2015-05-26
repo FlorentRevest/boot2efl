@@ -19,10 +19,10 @@ ROOTDIR=`pwd`
 # Fetch sources
 mkdir -p sources build/conf
 if [ ! -d sources/poky ] ; then
-    git clone -b fido http://git.yoctoproject.org/git/poky sources/poky
+    git clone -b dizzy http://git.yoctoproject.org/git/poky sources/poky
 fi
 if [ ! -d sources/meta-openembedded ] ; then
-    git clone -b fido https://github.com/openembedded/meta-openembedded.git sources/meta-openembedded
+    git clone -b dizzy https://github.com/openembedded/meta-openembedded.git sources/meta-openembedded
 fi
 if [ ! -d sources/meta-boot2efl ] ; then
     git clone https://github.com/FlorentRevest/meta-boot2efl sources/meta-boot2efl
@@ -35,7 +35,7 @@ fi
 if [ ! -e $ROOTDIR/build/conf/local.conf ]; then
     cat >> $ROOTDIR/build/conf/local.conf << EOF
 MACHINE ??= "radxa-hybris"
-DISTRO ?= "poky"
+DISTRO ?= "boot2efl"
 PACKAGE_CLASSES ?= "package_ipk"
 
 CONF_VERSION = "1"
@@ -54,22 +54,24 @@ fi
 
 if [ ! -e $ROOTDIR/build/conf/bblayers.conf ]; then
     cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
-LCONF_VERSION = "6"
+LCONF_VERSION = "5"
 
 BBPATH = "\${TOPDIR}"
 BBFILES ?= ""
 
 BBLAYERS ?= " \\
   $ROOTDIR/sources/poky/meta \\
-  $ROOTDIR/sources/poky/meta-yocto \\
   $ROOTDIR/sources/meta-boot2efl \\
   $ROOTDIR/sources/meta-radxa-hybris \\
+  $ROOTDIR/sources/meta-openembedded/meta-oe \\
+  $ROOTDIR/sources/meta-openembedded/meta-efl \\
   "
 BBLAYERS_NON_REMOVABLE ?= " \\
   $ROOTDIR/sources/poky/meta \\
-  $ROOTDIR/sources/poky/meta-yocto \\
   $ROOTDIR/sources/meta-boot2efl \\
   $ROOTDIR/sources/meta-radxa-hybris \\
+  $ROOTDIR/sources/meta-openembedded/meta-oe \\
+  $ROOTDIR/sources/meta-openembedded/meta-efl \\
   "
 EOF
 fi
@@ -85,7 +87,7 @@ If you meet any issue you can report it to the project's github page:
     https://github.com/FlorentRevest/boot2efl
 
 You can now run the following command to get started with the compilation:
-    bitbake boot2efl
+    bitbake boot2efl-image
 
 Have fun!
 EOF
