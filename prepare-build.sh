@@ -16,7 +16,7 @@
 
 ROOTDIR=`pwd`
 
-# Fetch sources
+# Fetch sources depending on the target (radxa/cubie)
 mkdir -p src build/conf
 if [ ! -d src/oe-core ] ; then
     git clone -b fido git://git.openembedded.org/openembedded-core src/oe-core
@@ -28,7 +28,7 @@ if [ ! -d src/meta-openembedded ] ; then
     git clone -b master https://github.com/openembedded/meta-openembedded.git src/meta-openembedded
 fi
 if [ ! -d src/meta-boot2efl ] ; then
-    git clone -b fido https://github.com/FlorentRevest/meta-boot2efl src/meta-boot2efl
+    git clone https://github.com/FlorentRevest/meta-boot2efl src/meta-boot2efl
 fi
 if [ ! -d src/meta-smartphone ] ; then
     git clone -b fido https://github.com/shr-distribution/meta-smartphone src/meta-smartphone
@@ -48,7 +48,7 @@ case ${1} in
         ;;
     *)
         if [ ! -d src/meta-radxa-hybris ] ; then
-            git clone -b fido https://github.com/FlorentRevest/meta-radxa-hybris src/meta-radxa-hybris
+            git clone https://github.com/FlorentRevest/meta-radxa-hybris src/meta-radxa-hybris
         fi
         if [ ! -d src/meta-rockchip ] ; then
             git clone https://github.com/linux-rockchip/meta-rockchip src/meta-rockchip
@@ -56,7 +56,7 @@ case ${1} in
         ;;
 esac
 
-# Create local.conf and bblayers.conf
+# Create local.conf and bblayers.conf depending on the target
 if [ ! -e $ROOTDIR/build/conf/local.conf ]; then
     case ${1} in
         cubie)
