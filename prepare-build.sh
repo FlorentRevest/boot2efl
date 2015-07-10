@@ -50,8 +50,8 @@ case ${1} in
         if [ ! -d src/meta-odroid-hybris ] ; then
             git clone https://github.com/FlorentRevest/meta-odroid-hybris src/meta-odroid-hybris
         fi
-        if [ ! -d src/meta-sunxi ] ; then
-            git clone https://github.com/linux-meson/meta-amlogic.git src/meta-sunxi
+        if [ ! -d src/meta-amlogic ] ; then
+            git clone https://github.com/linux-meson/meta-amlogic.git src/meta-amlogic
         fi
         ;;
     *)
