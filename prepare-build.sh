@@ -16,7 +16,7 @@
 
 ROOTDIR=`pwd`
 
-# Fetch sources depending on the target (radxa/cubie)
+# Fetch sources depending on the target (radxa/cubie/odroid)
 mkdir -p src build/conf
 if [ ! -d src/oe-core ] ; then
     git clone -b fido git://git.openembedded.org/openembedded-core src/oe-core
@@ -46,6 +46,14 @@ case ${1} in
             git clone https://github.com/linux-sunxi/meta-sunxi src/meta-sunxi
         fi
         ;;
+    odroid)
+        if [ ! -d src/meta-odroid-hybris ] ; then
+            git clone https://github.com/FlorentRevest/meta-odroid-hybris src/meta-odroid-hybris
+        fi
+        if [ ! -d src/meta-sunxi ] ; then
+            git clone https://github.com/linux-meson/meta-amlogic.git src/meta-sunxi
+        fi
+        ;;
     *)
         if [ ! -d src/meta-radxa-hybris ] ; then
             git clone https://github.com/FlorentRevest/meta-radxa-hybris src/meta-radxa-hybris
@@ -62,6 +70,11 @@ if [ ! -e $ROOTDIR/build/conf/local.conf ]; then
         cubie)
             cat > $ROOTDIR/build/conf/local.conf << EOF
 MACHINE ??= "cubieboard"
+EOF
+            ;;
+        odroid)
+            cat > $ROOTDIR/build/conf/local.conf << EOF
+MACHINE ??= "odroidc1"
 EOF
             ;;
         *)
@@ -112,6 +125,12 @@ EOF
   $ROOTDIR/src/meta-cubie-hybris \\
 EOF
             ;;
+        odroid)
+            cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
+  $ROOTDIR/src/meta-amlogic \\
+  $ROOTDIR/src/meta-odroid-hybris \\
+EOF
+            ;;
         *)
             cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
   $ROOTDIR/src/meta-rockchip \\
@@ -138,6 +157,13 @@ EOF
             cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
   $ROOTDIR/src/meta-sunxi \\
   $ROOTDIR/src/meta-cubie-hybris \\
+  "
+EOF
+            ;;
+        odroid)
+            cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
+  $ROOTDIR/src/meta-amlogic \\
+  $ROOTDIR/src/meta-odroid-hybris \\
   "
 EOF
             ;;
