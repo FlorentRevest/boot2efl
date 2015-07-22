@@ -187,8 +187,10 @@ Welcome to the Boot2EFL compilation script.
 If you meet any issue you can report it to the project's github page:
     https://github.com/FlorentRevest/boot2efl
 
-You can now run the following command to get started with the compilation:
+You can now run one of the following command to get started with the compilation:
     bitbake boot2efl-image
+    bitbake boot2efl-image-dbg
+    bitbake boot2efl-image-dev
 
 Have fun!
 EOF
