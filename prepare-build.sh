@@ -79,7 +79,7 @@ EOF
             ;;
         *)
             cat > $ROOTDIR/build/conf/local.conf << EOF
-MACHINE ??= "radxa-rock"
+MACHINE ??= "rk3188-radxarock"
 EOF
             ;;
     esac
