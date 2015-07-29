@@ -46,6 +46,11 @@ case ${1} in
             git clone https://github.com/linux-sunxi/meta-sunxi src/meta-sunxi
         fi
         ;;
+    sm-t210)
+        if [ ! -d src/meta-sm-t210-hybris ] ; then
+            git clone https://github.com/FlorentRevest/meta-sm-t210-hybris src/meta-sm-t210-hybris
+        fi
+        ;;
     odroid)
         if [ ! -d src/meta-odroid-hybris ] ; then
             git clone https://github.com/FlorentRevest/meta-odroid-hybris src/meta-odroid-hybris
@@ -131,47 +136,15 @@ EOF
   $ROOTDIR/src/meta-odroid-hybris \\
 EOF
             ;;
-        *)
+        sm-t210)
             cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
-  $ROOTDIR/src/meta-rockchip \\
-  $ROOTDIR/src/meta-radxa-hybris \\
-EOF
-            ;;
-    esac
-    cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
-  "
-BBLAYERS_NON_REMOVABLE ?= " \\
-  $ROOTDIR/src/oe-core/meta \\
-  $ROOTDIR/src/meta-rockchip \\
-  $ROOTDIR/src/meta-boot2efl \\
-  $ROOTDIR/src/meta-radxa-hybris \\
-  $ROOTDIR/src/meta-virtualization \\
-  $ROOTDIR/src/meta-openembedded/meta-oe \\
-  $ROOTDIR/src/meta-openembedded/meta-efl \\
-  $ROOTDIR/src/meta-openembedded/meta-python \\
-  $ROOTDIR/src/meta-openembedded/meta-networking \\
-  $ROOTDIR/src/meta-smartphone/meta-android \\
-EOF
-    case ${1} in
-        cubie)
-            cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
-  $ROOTDIR/src/meta-sunxi \\
-  $ROOTDIR/src/meta-cubie-hybris \\
-  "
-EOF
-            ;;
-        odroid)
-            cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
-  $ROOTDIR/src/meta-amlogic \\
-  $ROOTDIR/src/meta-odroid-hybris \\
-  "
+  $ROOTDIR/src/meta-sm-t210-hybris \\
 EOF
             ;;
         *)
             cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
   $ROOTDIR/src/meta-rockchip \\
   $ROOTDIR/src/meta-radxa-hybris \\
-  "
 EOF
             ;;
     esac
