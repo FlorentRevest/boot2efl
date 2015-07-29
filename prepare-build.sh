@@ -16,7 +16,7 @@
 
 ROOTDIR=`pwd`
 
-# Fetch sources depending on the target (radxa/cubie/odroid)
+# Fetch sources depending on the target (radxa/cubie/odroid/sm-t210)
 mkdir -p src build/conf
 if [ ! -d src/oe-core ] ; then
     git clone -b fido git://git.openembedded.org/openembedded-core src/oe-core
@@ -80,6 +80,11 @@ EOF
         odroid)
             cat > $ROOTDIR/build/conf/local.conf << EOF
 MACHINE ??= "odroidc1"
+EOF
+            ;;
+        sm-t210)
+            cat > $ROOTDIR/build/conf/local.conf << EOF
+MACHINE ??= "sm-t210"
 EOF
             ;;
         *)
