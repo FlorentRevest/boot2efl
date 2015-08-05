@@ -127,29 +127,34 @@ BBLAYERS ?= " \\
   $ROOTDIR/src/meta-openembedded/meta-python \\
   $ROOTDIR/src/meta-openembedded/meta-networking \\
   $ROOTDIR/src/meta-smartphone/meta-android \\
+  " \\
 EOF
     case ${1} in
         cubie)
             cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
   $ROOTDIR/src/meta-sunxi \\
   $ROOTDIR/src/meta-cubie-hybris \\
+  " \\
 EOF
             ;;
         odroid)
             cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
   $ROOTDIR/src/meta-amlogic \\
   $ROOTDIR/src/meta-odroid-hybris \\
+  " \\
 EOF
             ;;
         sm-t210)
             cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
   $ROOTDIR/src/meta-sm-t210-hybris \\
+  " \\
 EOF
             ;;
         *)
             cat >> $ROOTDIR/build/conf/bblayers.conf << EOF
   $ROOTDIR/src/meta-rockchip \\
   $ROOTDIR/src/meta-radxa-hybris \\
+  " \\
 EOF
             ;;
     esac
